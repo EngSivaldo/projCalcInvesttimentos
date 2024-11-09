@@ -90,7 +90,7 @@ function generateReturnsArray(
   
 //     // Determina a taxa de retorno final com base na frequência
 //     const taxaRetornoFinal = prazoRetorno === 'mensal'
-//         ? 1 + taxaRetorno / 100 
+        // ? 1 + taxaRetorno / 100 
 //         : converterParaTaxaRetornoMensal(1 + taxaRetorno/100);
   
 //     // Converte o horizonte de tempo para meses, se necessário
