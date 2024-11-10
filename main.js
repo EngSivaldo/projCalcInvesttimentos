@@ -2,6 +2,8 @@
 import { generateReturnsArray } from "./src/investimentGoals";
 
 const form = document.getElementById('investment-form');
+// const calculateButton = document.getElementById('calculate-results');
+
 
 if (form) {
   form.addEventListener('submit', renderProgression);
@@ -12,6 +14,7 @@ if (form) {
 function renderProgression(evt) {
   evt.preventDefault();
   // Verifique e obtenha todos os elementos necessários do DOM
+  // const startingAmountElement = Number(form['starting-amount'].value);//outra forma acessar value atraves do name
   const startingAmountElement = document.getElementById('starting-amount');
   const additionalContributionElement = document.getElementById('additional-contribution');
   const timeAmountElement = document.getElementById('time-amount');
@@ -50,3 +53,4 @@ function renderProgression(evt) {
 }
 
 form.addEventListener('submit', renderProgression);
+// calculateButton.addEventListener('submit', renderProgression);
