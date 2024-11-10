@@ -1,15 +1,16 @@
 // Inteligencia do sistema
 import { generateReturnsArray } from "./src/investimentGoals";
 
-const calculateButton = document.getElementById('calculate-results');
+const form = document.getElementById('investment-form');
 
-if (calculateButton) {
-  calculateButton.addEventListener('click', renderProgression);
+if (form) {
+  form.addEventListener('submit', renderProgression);
 } else {
-  console.error('Botão calcular não encontrado');
+  console.error('form calcular não encontrado');
 }
 
-function renderProgression() {
+function renderProgression(evt) {
+  evt.preventDefault();
   // Verifique e obtenha todos os elementos necessários do DOM
   const startingAmountElement = document.getElementById('starting-amount');
   const additionalContributionElement = document.getElementById('additional-contribution');
@@ -47,3 +48,5 @@ function renderProgression() {
     console.error('Um ou mais elementos necessários não foram encontrados no DOM');
   }
 }
+
+form.addEventListener('submit', renderProgression);
