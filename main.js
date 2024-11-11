@@ -11,6 +11,9 @@ if (form) {
 
 function renderProgression(evt) {
   evt.preventDefault();
+  if (document.querySelector('.error')){
+    return;
+  }
   // Verifique e obtenha todos os elementos necessários do DOM
   const startingAmount = Number(document.getElementById('starting-amount').value.replace(",", "."));
   const additionalContribution = Number(document.getElementById('additional-contribution').value.replace(",", "."));
@@ -44,13 +47,17 @@ function validateInput(evt) {
   const grandParentElement = evt.target.parentElement.parentElement;//ref. elem avo (div)
   const inputValue = evt.target.value.replace(",", ".");
 
-  if(isNaN(inputValue) || Number(inputValue) <= 0 ) {
+  if(isNaN(inputValue) || Number(inputValue) <= 0 && !parentElement.classList.contains("error")) {
     const errorTextElement = document.createElement('p');//criar um paragrafo <p></p>
     errorTextElement.classList.add('text-red-500');//texto do parag red 
     errorTextElement.innerText = 'Insira um valor numérico e maior que zero!';
 
-    parentElement.classList.add('error') ;//faz div pai ficar red na borda
+    parentElement.classList.add('error') ;//faz div pai ficar red na borda(de error)
     grandParentElement.appendChild(errorTextElement);//insere a msg de error no final da div avo
+  }else if (parentElement.classList.contains("error") && !isNaN(inputValue) && Number(inputValue) > 0) {
+    parentElement.classList.remove('error');
+    grandParentElement.querySelector('p').remove();
+
   }
 }
 
