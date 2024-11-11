@@ -33,33 +33,33 @@ function renderProgression(evt) {
   console.log(returnsArray);
 }
 
-// funcao de exibir o error, quando digitar algo errado no input com class === name
+
+// funcao de exibir o error, quando digitar algo errado no input 
 function validateInput(evt) {
-  if (evt.target.value === '') {
+  if(evt.target.value === '') {
     return;
   }
 
-  const parentElement = evt.target.parentElement; // elemento pai
-  const grandParentElement = evt.target.parentElement.parentElement; // elemento avô
+  const {parentElement} = evt.target; // ref ao elemento pai (div) 
+  const grandParentElement = evt.target.parentElement.parentElement;//ref. elem avo (div)
   const inputValue = evt.target.value.replace(",", ".");
 
-  if (isNaN(inputValue) || Number(inputValue) <= 0) {
-    // objetivo: <p class="text-red-500">Insira um valor numerico e maior que zero</p>
-    const errorTextElement = document.createElement("p"); // <p></p>
-    errorTextElement.classList.add('text-red-500'); // <p class='text-red-500'></p>
-    errorTextElement.innerText = "Insira um valor numerico e maior que zero"; // <p class="text-red-500">Insira um valor numerico e maior que zero</p>
+  if(isNaN(inputValue) || Number(inputValue) <= 0 ) {
+    const errorTextElement = document.createElement('p');//criar um paragrafo <p></p>
+    errorTextElement.classList.add('text-red-500');//texto do parag red 
+    errorTextElement.innerText = 'Insira um valor numérico e maior que zero!';
 
-    parentElement.classList.add('error'); // recebe borda vermelha (error)
-    grandParentElement.appendChild(errorTextElement);
+    parentElement.classList.add('error') ;//faz div pai ficar red na borda
+    grandParentElement.appendChild(errorTextElement);//insere a msg de error no final da div avo
   }
 }
 
-// Adicionar event listeners para blur
-const inputs = document.querySelectorAll('input[name]');
-inputs.forEach(input => {
-  input.addEventListener('blur', validateInput);
-});
+for (const formElement of form) {
+  if(formElement.tagName === 'INPUT' && formElement.hasAttribute('name')) {
+    formElement.addEventListener("blur", validateInput);
 
+  }
+}
 
 
 form.addEventListener('submit', renderProgression);
