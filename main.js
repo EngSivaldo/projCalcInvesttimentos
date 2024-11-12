@@ -47,7 +47,8 @@ function validateInput(evt) {
   const grandParentElement = evt.target.parentElement.parentElement;//ref. elem avo (div)
   const inputValue = evt.target.value.replace(",", ".");
 
-  if(isNaN(inputValue) || Number(inputValue) <= 0 && !parentElement.classList.contains("error")) {
+  //condicao pra adicionar uma msg de erro mo input
+  if(!parentElement.classList.contains("error") && isNaN(inputValue) || Number(inputValue) <= 0) {
     const errorTextElement = document.createElement('p');//criar um paragrafo <p></p>
     errorTextElement.classList.add('text-red-500');//texto do parag red 
     errorTextElement.innerText = 'Insira um valor numérico e maior que zero!';
@@ -55,8 +56,8 @@ function validateInput(evt) {
     parentElement.classList.add('error') ;//faz div pai ficar red na borda(de error)
     grandParentElement.appendChild(errorTextElement);//insere a msg de error no final da div avo
   }else if (parentElement.classList.contains("error") && !isNaN(inputValue) && Number(inputValue) > 0) {
-    parentElement.classList.remove('error');
-    grandParentElement.querySelector('p').remove();
+    parentElement.classList.remove('error');//remover borda de erro 
+    grandParentElement.querySelector('p').remove();//remove a msg de errono avo
 
   }
 }
