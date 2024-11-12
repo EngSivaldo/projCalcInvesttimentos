@@ -3,6 +3,8 @@ import { generateReturnsArray } from "./src/investimentGoals";
 
 // Obtém o formulário de investimento pelo ID
 const form = document.getElementById('investment-form');
+const clearFormButton = document.getElementById('clear-form');
+//const calculateButton = document.getElementById('calculate-results');
 
 // Verifica se o formulário foi encontrado
 if (form) {
@@ -17,7 +19,6 @@ if (form) {
 function renderProgression(evt) {
   // Previne o comportamento padrão do formulário
   evt.preventDefault();
-  
   // Verifica se há algum erro no formulário
   if (document.querySelector('.error')){
     return;
@@ -45,6 +46,24 @@ function renderProgression(evt) {
   // Exibe o array de retornos no console
   console.log(returnsArray);
 }
+
+//função para limpar o formulário
+function clearForm() {
+  form['starting-amount'].value = '';
+  form['additional-contribution'].value = '';
+  form['time-amount'].value = '';
+  form['return-rate'].value = '';
+  form['tax-rate'].value = '';
+  //limpar erro
+  const errorInputContainers = document.querySelectorAll('.error');
+  for (const errorInputContainer of errorInputContainers) {
+    errorInputContainer.classList.remove('error');
+    errorInputContainer.parentElement.querySelector('p').remove();
+  }
+
+
+}
+
 
 // Função para validar a entrada do usuário
 function validateInput(evt) {
@@ -82,3 +101,6 @@ for (const formElement of form) {
 
 // Adiciona novamente o evento de submissão ao formulário
 form.addEventListener('submit', renderProgression);
+// calculateButton.addEventListener('click', renderProgression);
+clearFormButton.addEventListener('click', clearForm);
+
