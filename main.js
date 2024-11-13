@@ -1,10 +1,20 @@
 // Importa a função generateReturnsArray do módulo investimentGoals
 import { generateReturnsArray } from "./src/investimentGoals";
+import { Chart } from "chart.js/auto";
 
+         
+const finalMoneyChart = document.getElementById('final-money-distribution')
+const progressionChart = document.getElementById('progression')
 // Obtém o formulário de investimento pelo ID
 const form = document.getElementById('investment-form');
 const clearFormButton = document.getElementById('clear-form');
 //const calculateButton = document.getElementById('calculate-results');
+
+
+function formatCurrency(value) {
+  return value.toFixed(2);
+
+}
 
 // Verifica se o formulário foi encontrado
 if (form) {
@@ -43,8 +53,34 @@ function renderProgression(evt) {
     returnRatePeriod
   );
 
-  // Exibe o array de retornos no console
-  console.log(returnsArray);
+  const finalInvestimentObject = returnsArray[returnsArray.length - 1];
+
+
+ new Chart(finalMoneyChart, {
+    type: 'doughnut',
+    data: {
+      labels: [
+        'Total investido',
+        'Rendimento',
+        'Imposto'
+      ],
+      datasets: [
+        {      
+        data: [
+          formatCurrency(finalInvestimentObject.investedAmount),
+           formatCurrency(finalInvestimentObject.totalInterestReturns * (1-taxRate/100)), formatCurrency(finalInvestimentObject.totalInterestReturns * (taxRate/100))
+          ],
+        backgroundColor: [
+          'rgb(255, 99, 132)',
+          'rgb(54, 162, 235)',
+          'rgb(255, 205, 86)'
+        ],
+        hoverOffset: 4,
+      },
+    ],
+    },
+  
+ });
 }
 
 //função para limpar o formulário
