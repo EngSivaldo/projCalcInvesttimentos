@@ -1,4 +1,5 @@
 // Importa a função generateReturnsArray do módulo investimentGoals
+import { data } from "autoprefixer";
 import { generateReturnsArray } from "./src/investimentGoals";
 import { Chart } from "chart.js/auto";
 
@@ -81,7 +82,39 @@ function renderProgression(evt) {
     },
   
  });
+ new Chart(progressionChart, {
+  type: 'bar',
+  data: {
+    labels: returnsArray.map(InvestimentObject => InvestimentObject.month),
+    datasets: [{
+      label: 'Total Investido',
+      data: returnsArray.map(InvestimentObject => formatCurrency(InvestimentObject.investedAmount)),
+      backgroundColor:  'rgb(255, 99, 132)',
+    },{
+      label: 'Retorno do Investimento',
+      data: returnsArray.map(InvestimentObject => formatCurrency(InvestimentObject.interestReturns)),
+      backgroundColor:  'rgb(54, 162, 235)',
+    },]
+
+  }, 
+  options: {
+    resposive: true,
+    scales: {
+      x: {
+        stacked: true,
+      },
+      y: {
+        stacked: true
+      }
+    }
+  }
+})
+
+ 
 }
+
+
+
 
 //função para limpar o formulário
 function clearForm() {
