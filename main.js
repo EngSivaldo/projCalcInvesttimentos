@@ -13,6 +13,14 @@ const clearFormButton = document.getElementById('clear-form');
 let doughnutChartReference = {}  //variavel que guarda o gráficos
 let progressionChartReference = {}  //variavel que guarda o gráficos
 
+//criacao da tabela
+const columnArray = [
+  {columnLabel: "Total Investido", accessor: "investedAmount" },
+  {columnLabel: "Rendimento Mensal", accessor: "interestReturns" },
+  {columnLabel: "Rendimento Total", accessor: "totalInterestReturns" },
+  {columnLabel: "Mês", accessor: "month"},
+  {columnLabel: "Quantia Total", accessor: "totalAmount" },
+]
 
 function formatCurrency(value) {
   return value.toFixed(2);
