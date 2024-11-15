@@ -10,6 +10,8 @@ const progressionChart = document.getElementById('progression')
 const form = document.getElementById('investment-form');
 const clearFormButton = document.getElementById('clear-form');
 //const calculateButton = document.getElementById('calculate-results');
+let doughnutChartReference = {}  //variavel que guarda o gráficos
+let progressionChartReference = {}  //variavel que guarda o gráficos
 
 
 function formatCurrency(value) {
@@ -34,6 +36,8 @@ function renderProgression(evt) {
   if (document.querySelector('.error')){
     return;
   }
+//chamada da funcão limpar gráficos
+  resetCharts();
   
   // Obtém e converte os valores dos campos do formulário
   const startingAmount = Number(document.getElementById('starting-amount').value.replace(",", "."));
@@ -56,8 +60,8 @@ function renderProgression(evt) {
 
   const finalInvestimentObject = returnsArray[returnsArray.length - 1];
 
-
- new Chart(finalMoneyChart, {
+//variável que armazena o gráfico
+ doughnutChartReference = new Chart(finalMoneyChart, {
     type: 'doughnut',
     data: {
       labels: [
@@ -82,7 +86,8 @@ function renderProgression(evt) {
     },
   
  });
- new Chart(progressionChart, {
+//variável que armazena o gráfico
+ progressionChartReference =  new Chart(progressionChart, {
   type: 'bar',
   data: {
     labels: returnsArray.map(InvestimentObject => InvestimentObject.month),
@@ -110,11 +115,21 @@ function renderProgression(evt) {
   }
 })
 
- 
 }
 
+//funcao auxiliar para verificar se o obj esta vazio
+function isObjectEmpty(obj){
+  return Object.keys(obj).length === 0;
+}
 
+//funcão de limpar gráficos
+function resetCharts() {
+  if (!isObjectEmpty(doughnutChartReference) && !isObjectEmpty(progressionChart)) {
+    doughnutChartReference.destroy();
+    progressionChartReference.destroy();
 
+  }
+}
 
 //função para limpar o formulário
 function clearForm() {
@@ -123,14 +138,16 @@ function clearForm() {
   form['time-amount'].value = '';
   form['return-rate'].value = '';
   form['tax-rate'].value = '';
+
+  //chamada da função para limpar graficos
+  resetCharts();
+
   //limpar erro
   const errorInputContainers = document.querySelectorAll('.error');
   for (const errorInputContainer of errorInputContainers) {
     errorInputContainer.classList.remove('error');
     errorInputContainer.parentElement.querySelector('p').remove();
   }
-
-
 }
 
 
