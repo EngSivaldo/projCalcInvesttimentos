@@ -59,29 +59,22 @@
         <button type="submit" form="investment-form" id="calculate-results" class="w-1/2 rounded-lg bg-emerald-950 text-slate-200 hover:bg-emerald-800">Calcular</button>
         <button id="clear-form" class="w-1/2 rounded-lg bg-blue-300 text-slate-200 hover:bg-emerald-800">Limpar</button>
       </div>
-    </aside>
-    <main>
+    </aside>     
      
+   <!-- <script src="https://cdn.jsdelivr.net/npm/chart.js"></script> -->
      
-   <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-     
-    <main class="h-full">
-      <section id="charts-container">
-        <div class="h-[36dvh]">
-          <h1>Resultado final</h1>
+    <main class="row-span-2 col-span-2">
+      <section id="charts-container" class="h-full">
+        <div class="h-[36%] flex flex-col items-center pb-10">
+          <p class="font-bold text-lg">Resultado final</p>
           <canvas  id="final-money-distribution"></canvas>
-
         </div>
-
-        <div class="h-[56dvh]">
-          <h1>Progressão</h1>
+        <div class="h-[56%]  flex flex-col items-center">
+          <p class="font-bold text-lg">Progressão</p>
           <canvas id="progression"></canvas>
-
         </div>
-
       </section>
     </main> 
-
     <script type="module" src="./main.js"></script>
   </body>
 </html>
