@@ -186,7 +186,7 @@ for (const formElement of form) {
 }
 
 // Adiciona novamente o evento de submissão ao formulário
-form.addEventListener('submit', renderProgression);
+// form.addEventListener('submit', renderProgression);
 // calculateButton.addEventListener('click', renderProgression);
 clearFormButton.addEventListener('click', clearForm);
 
