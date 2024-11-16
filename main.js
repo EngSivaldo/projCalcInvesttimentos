@@ -66,64 +66,63 @@ function renderProgression(evt) {
     returnRatePeriod
   );
 
-  const finalInvestimentObject = returnsArray[returnsArray.length - 1];
-
-//variável que armazena o gráfico
- doughnutChartReference = new Chart(finalMoneyChart, {
-    type: 'doughnut',
-    data: {
-      labels: [
-        'Total investido',
-        'Rendimento',
-        'Imposto'
-      ],
-      datasets: [
-        {      
-        data: [
-          formatCurrency(finalInvestimentObject.investedAmount),
-           formatCurrency(finalInvestimentObject.totalInterestReturns * (1-taxRate/100)), formatCurrency(finalInvestimentObject.totalInterestReturns * (taxRate/100))
-          ],
-        backgroundColor: [
-          'rgb(255, 99, 132)',
-          'rgb(54, 162, 235)',
-          'rgb(255, 205, 86)'
-        ],
-        hoverOffset: 4,
-      },
-    ],
-    },
+//   const finalInvestimentObject = returnsArray[returnsArray.length - 1];
+// //variável que armazena o gráfico
+//  doughnutChartReference = new Chart(finalMoneyChart, {
+//     type: 'doughnut',
+//     data: {
+//       labels: [
+//         'Total investido',
+//         'Rendimento',
+//         'Imposto'
+//       ],
+//       datasets: [
+//         {      
+//         data: [
+//           formatCurrency(finalInvestimentObject.investedAmount),
+//            formatCurrency(finalInvestimentObject.totalInterestReturns * (1-taxRate/100)), formatCurrency(finalInvestimentObject.totalInterestReturns * (taxRate/100))
+//           ],
+//         backgroundColor: [
+//           'rgb(255, 99, 132)',
+//           'rgb(54, 162, 235)',
+//           'rgb(255, 205, 86)'
+//         ],
+//         hoverOffset: 4,
+//       },
+//     ],
+//     },
   
- });
-//variável que armazena o gráfico
- progressionChartReference =  new Chart(progressionChart, {
-  type: 'bar',
-  data: {
-    labels: returnsArray.map(InvestimentObject => InvestimentObject.month),
-    datasets: [{
-      label: 'Total Investido',
-      data: returnsArray.map(InvestimentObject => formatCurrency(InvestimentObject.investedAmount)),
-      backgroundColor:  'rgb(255, 99, 132)',
-    },{
-      label: 'Retorno do Investimento',
-      data: returnsArray.map(InvestimentObject => formatCurrency(InvestimentObject.interestReturns)),
-      backgroundColor:  'rgb(54, 162, 235)',
-    },]
+//  });
+// //variável que armazena o gráfico
+//  progressionChartReference =  new Chart(progressionChart, {
+//   type: 'bar',
+//   data: {
+//     labels: returnsArray.map(InvestimentObject => InvestimentObject.month),
+//     datasets: [{
+//       label: 'Total Investido',
+//       data: returnsArray.map(InvestimentObject => formatCurrency(InvestimentObject.investedAmount)),
+//       backgroundColor:  'rgb(255, 99, 132)',
+//     },{
+//       label: 'Retorno do Investimento',
+//       data: returnsArray.map(InvestimentObject => formatCurrency(InvestimentObject.interestReturns)),
+//       backgroundColor:  'rgb(54, 162, 235)',
+//     },]
 
-  }, 
-  options: {
-    resposive: true,
-    scales: {
-      x: {
-        stacked: true,
-      },
-      y: {
-        stacked: true
-      }
-    }
-  }
-})
+//   }, 
+//   options: {
+//     resposive: true,
+//     scales: {
+//       x: {
+//         stacked: true,
+//       },
+//       y: {
+//         stacked: true,
+//       },
+//     },
+//   },
+// });
 
-}
+ }
 
 //funcao auxiliar para verificar se o obj esta vazio
 function isObjectEmpty(obj){
@@ -194,7 +193,7 @@ for (const formElement of form) {
 }
 
 // Adiciona novamente o evento de submissão ao formulário
-// form.addEventListener('submit', renderProgression);
+form.addEventListener('submit', renderProgression);
 // calculateButton.addEventListener('click', renderProgression);
 clearFormButton.addEventListener('click', clearForm);
 
