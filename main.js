@@ -2,6 +2,7 @@
 import { data } from "autoprefixer";
 import { generateReturnsArray } from "./src/investimentGoals";
 import { Chart } from "chart.js/auto";
+import { createTable } from "./src/table";
 
          
 const finalMoneyChart = document.getElementById('final-money-distribution')
@@ -15,15 +16,15 @@ let progressionChartReference = {}  //variavel que guarda o gráficos
 
 //criacao da tabela
 const columnArray = [
-  {columnLabel: "Total Investido", accessor: "investedAmount" },
-  {columnLabel: "Rendimento Mensal", accessor: "interestReturns" },
-  {columnLabel: "Rendimento Total", accessor: "totalInterestReturns" },
   {columnLabel: "Mês", accessor: "month"},
-  {columnLabel: "Quantia Total", accessor: "totalAmount" },
+  {columnLabel: "Total Investido", accessor: "investedAmount", format: (numberInfo) => formatCurrency(numberInfo)},
+  {columnLabel: "Rendimento Mensal", accessor: "interestReturns",format: (numberInfo) => formatCurrency(numberInfo) },
+  {columnLabel: "Rendimento Total", accessor: "totalInterestReturns",format: (numberInfo) => formatCurrency(numberInfo) },
+  {columnLabel: "Quantia Total", accessor: "totalAmount",format: (numberInfo) => formatCurrency(numberInfo) },
 ]
 
 function formatCurrency(value) {
-  return value.toFixed(2);
+  return value.toLocaleString("pt-BR", {style: "currency", currency: 'BRL'});
 
 }
 
@@ -121,6 +122,8 @@ function renderProgression(evt) {
 //     },
 //   },
 // });
+
+createTable(columnArray, returnsArray, 'results-table');
 
  }
 
