@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>App Calculadora de Investimentos</title>
   </head>
-  <body class="h-[100dvh] grid grid-cols-3 grid-rows-2 bg-slate-300">
+  <body class="h-[100dvh] grid grid-cols-3 grid-rows-2 bg-slate-100">
     <aside class="bg-emerald-300 row-span-2 flex flex-col justify-between py-5 px-2">
       <h1 class="text-2xl font-bold px-6 py-2">Calculadora de investimentos</h1>
       <form id="investment-form" class="w-full">  <!--incicio form rentabilidade-->
@@ -64,23 +64,25 @@
    <!-- <script src="https://cdn.jsdelivr.net/npm/chart.js"></script> -->
      
     <main class="row-span-2 col-span-2">
-      <section id="charts-container" class="h-full">
-        <div class="h-[36%] flex flex-col items-center pb-10">
-          <p class="font-bold text-lg">Resultado final</p>
-          <canvas  id="final-money-distribution"></canvas>
-        </div>
-        <div class="h-[56%]  flex flex-col items-center">
-          <p class="font-bold text-lg">Progressão</p>
-          <canvas id="progression"></canvas>
-        </div>
-      </section>                              <!--barra de rolagem-->
-      <section id="table-container" class="h-full overflow-y-auto">
-        <p  class="font-bold text-lg text-center sticky top-0 bg-blue-300">Resultados Mensais</p>
-        <table 
-        id="results-table"
-        class="w-full max-h-full border border-separate">     
-        </table>
-      </section>
+      <div id="carousel" class="h-full w-full flex overflow-x-auto">
+        <section id="charts-container" class="h-full basis-full shrink-0">
+          <div class="h-[36%] flex flex-col items-center pb-10">
+            <p class="font-bold text-lg">Resultado final</p>
+            <canvas  id="final-money-distribution"></canvas>
+          </div>
+          <div class="h-[56%]  flex flex-col items-center">
+            <p class="font-bold text-lg">Progressão</p>
+            <canvas id="progression"></canvas>
+          </div>
+        </section>                              <!--barra de rolagem-->
+        <section id="table-container" class="h-full overflow-y-auto basis-full shrink-0">
+          <p  class="font-bold text-lg text-center sticky top-0 bg-blue-300">Resultados Mensais</p>
+          <table 
+          id="results-table"
+          class="w-full max-h-full border border-separate">     
+          </table>
+        </section>
+      </div>
     </main> 
     <script type="module" src="./main.js"></script>
   </body>
