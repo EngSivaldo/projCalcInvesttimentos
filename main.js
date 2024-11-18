@@ -16,11 +16,11 @@ let progressionChartReference = {}  //variavel que guarda o gráficos
 
 //criacao da tabela
 const columnArray = [
-  {columnLabel: "Mês", accessor: "month"},
+  {columnLabel: "Mês", accessor: "month"}, //Colunatotal investido, formatado como moeda
   {columnLabel: "Total Investido", accessor: "investedAmount", format: (numberInfo) => formatCurrency(numberInfo)},
   {columnLabel: "Rendimento Mensal", accessor: "interestReturns",format: (numberInfo) => formatCurrency(numberInfo) },
   {columnLabel: "Rendimento Total", accessor: "totalInterestReturns",format: (numberInfo) => formatCurrency(numberInfo) },
-  {columnLabel: "Quantia Total", accessor: "totalAmount",format: (numberInfo) => formatCurrency(numberInfo) },
+  {columnLabel: "Quantia Total", accessor: "totalAmount",format: (numberInfo) => formatCurrency(numberInfo) }, //Colunaquantia total, formatada como moeda
 ]
 
 function formatCurrency(value) {
@@ -123,6 +123,7 @@ function renderProgression(evt) {
 //   },
 // });
 
+// A função é projetada para criar uma tabela HTML e preenchê-la com os dados fornecidos em columnArray e returnsArray, inserindo-a no elemento HTML com o ID 'results-table'
 createTable(columnArray, returnsArray, 'results-table');
 
  }
